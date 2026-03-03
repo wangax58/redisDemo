@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: redisDemo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  # 开启ANSI颜色编码（核心）
+  output:
+    ansi:
+      enabled: ALWAYS # 始终开启颜色（可选值：ALWAYS/DETECT/NEVER）
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379      # 端口
+      password:       # 密码（无则留空）
+      database: 0     # 数据库索引（默认0）
+      lettuce: # 连接池（Lettuce 是 Spring Boot 默认客户端）
+        pool:
+          max-active: 8   # 最大连接数
+          max-idle: 8     # 最大空闲连接
+          min-idle: 0     # 最小空闲连接
+          max-wait: -1ms  # 连接等待时间（-1 表示无限制）
+
+# 自定义日志格式（带颜色）
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+  level:
+    # 可指定包的日志级别，按需调整
+    root: INFO
+    com.example.demo: DEBUG # 你的业务包，调试时设为DEBUG
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 开启下划线转驼峰（如create_time → createTime）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印SQL日志（开发环境用，生产环境关闭）
+  global-config:
+    db-config:
+      logic-delete-field: deleted # 逻辑删除字段（可选）
+      logic-delete-value: 1 # 逻辑删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
