@@ -1,6 +1,7 @@
 package com.wangaixi.redisdemo.controller;
 
 import com.wangaixi.redisdemo.service.RedisService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
+@Tag(name = "Redis操作", description = "提供Redis字符串和哈希操作接口")
 @Controller
 public class RedisController {
 

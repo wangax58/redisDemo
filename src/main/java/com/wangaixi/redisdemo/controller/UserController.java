@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wangaixi.redisdemo.entity.User;
 import com.wangaixi.redisdemo.service.UserService;
 import com.wangaixi.redisdemo.util.ObjectRedisUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,6 +80,7 @@ public class UserController {
      * 请求方式：GET
      * 请求地址：/api/users
      */
+    @Operation(summary = "查询所有用户", description = "返回所有用户列表")
     @GetMapping
     public ResponseEntity<List<User>> listAllUsers() {
         List<User> userList = userService.list();
